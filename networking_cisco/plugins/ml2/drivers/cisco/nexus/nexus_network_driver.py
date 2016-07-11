@@ -408,7 +408,7 @@ class CiscoNexusDriver(object):
         return snippet
 
     def create_vlan(self, nexus_host,
-                    vlanid, vlanname, vni):
+                    vlanid, vlan_name, vni):
         """Create a VLAN on a Nexus Switch.
 
         Creates a VLAN given the VLAN ID, name and possible VxLAN ID.
