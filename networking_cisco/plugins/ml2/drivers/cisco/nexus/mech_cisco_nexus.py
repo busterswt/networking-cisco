@@ -1261,7 +1261,7 @@ class CiscoNexusMechanismDriver(api.MechanismDriver):
             vlan_id, vni, vlan_name = vlans.pop(0)
             # Add it to the batch
             conf_str += self.driver.get_create_vlan(
-                            switch_ip, vlan_id, vni)
+                            switch_ip, vlan_id, vlan_name, vni)
             if (count == const.CREATE_VLAN_SEND_SIZE):
                 self.driver.send_edit_string(switch_ip, conf_str)
                 vnsegment_sent += count

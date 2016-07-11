@@ -391,7 +391,7 @@ class CiscoNexusDriver(object):
             starttime, "set_all_vlan_states", switch=nexus_host)
         self.send_edit_string(nexus_host, snippet)
 
-    def get_create_vlan(self, nexus_host, vlanid, vni):
+    def get_create_vlan(self, nexus_host, vlanid, vlan_name, vni):
         """Returns an XML snippet for create VLAN on a Nexus Switch."""
         LOG.debug("NexusDriver: ")
 
@@ -400,7 +400,7 @@ class CiscoNexusDriver(object):
             snippet = (snipp.CMD_VLAN_CONF_VNSEGMENT_SNIPPET %
                        (vlanid, vni))
         else:
-            snippet = snipp.CMD_VLAN_CREATE_SNIPPET % vlanid
+            snippet = snipp.CMD_VLAN_CONF_SNIPPET % (vlanid,vlan_name)
 
         self.capture_and_print_timeshot(
             starttime, "get_create_vlan", switch=nexus_host)
@@ -417,7 +417,7 @@ class CiscoNexusDriver(object):
         LOG.debug("NexusDriver: ")
 
         starttime = time.time()
-        confstr = self.get_create_vlan(nexus_host, vlanid, vni)
+        confstr = self.get_create_vlan(nexus_host, vlanid, vlan_name, vni)
 
         self.send_edit_string(nexus_host, confstr)
 
